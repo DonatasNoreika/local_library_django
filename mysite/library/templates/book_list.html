@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+  <h1>Knygų sąrašas</h1>
+  {% if books %}
+  <ul>
+    {% for book in books %}
+      <li>
+        <a href="{{ book.id }}">{{ book.title }}</a> ({{book.author}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Bibliotekoje knygų nėra.</p>
+  {% endif %}
+
+{% endblock %}
