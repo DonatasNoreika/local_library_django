@@ -3,13 +3,21 @@
 {% block title %}Book Detail{% endblock %}
 
 {% block content %}
+ {% load static %}
+<div class="col-md-4 d-flex align-items-stretch">
+<div class="card mb-4 shadow-sm">
+  {% if book.cover %}
+    <img src="{{ book.cover.url }}" class="card-img-top" alt="...">
+  {% else %}
+    <img src="{% static 'img/no-image.png' %}" class="card-img-top">
+  {% endif %}
+</div>
+</div>
   <h1>{{ book.title }}</h1>
-
   <p><strong>Autorius:</strong> <a href="{% url 'author' book.author.pk %}">{{ book.author }}</a></p>
   <p><strong>Aprašymas:</strong> {{ book.summary }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Žanras:</strong> {{ book.genre.all|join:", " }}</p>
-
   <div style="margin-left:20px;margin-top:20px">
     <h4>Kopijos:</h4>
 
