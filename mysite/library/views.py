@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from .models import Book, Author, BookInstance, Genre
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.core.paginator import Paginator
 
 
 def index(request):
@@ -34,9 +35,11 @@ def index(request):
 
 
 def authors(request):
-    authors = Author.objects.all()
+    paginator = Paginator(Author.objects.all(), 2)
+    page_number = request.GET.get('page')
+    paged_authors = paginator.get_page(page_number)
     context = {
-        'authors': authors
+        'authors': paged_authors
     }
     return render(request, 'authors.html', context=context)
 
@@ -50,6 +53,7 @@ class BookListView(generic.ListView):
     model = Book
     template_name = 'book_list.html'
     context_object_name = 'books'
+    paginate_by = 2
 
 
 class BookDetailView(generic.DetailView):
