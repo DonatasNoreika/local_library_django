@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}User books{% endblock %}
+{% block content %}
+    <h1>Mano paimtos knygos</h1>
+    {% if books %}
+    <ul>
+
+      {% for book in books %}
+      <li class="{% if book.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book' book.book.pk %}">{{book.book.title}}</a> ({{ book.due_back }})
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>Šiuo metu iš mūsų nesate paėmę knygų.</p>
+    {% endif %}
+{% endblock %}

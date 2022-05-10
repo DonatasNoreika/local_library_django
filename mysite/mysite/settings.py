@@ -24,9 +24,9 @@ from .config import SECRET_KEY, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -39,6 +39,7 @@ EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 
 INSTALLED_APPS = [
     'library',
+    'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

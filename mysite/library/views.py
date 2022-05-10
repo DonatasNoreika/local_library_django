@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index(request):
@@ -26,7 +27,6 @@ def index(request):
     # Papildome kintamuoju num_visits, įkeliame jį į kontekstą.
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
-
 
     # perduodame informaciją į šabloną žodyno pavidale:
     context = {
@@ -61,6 +61,15 @@ class BookListView(generic.ListView):
     template_name = 'book_list.html'
     context_object_name = 'books'
     paginate_by = 2
+
+
+class UserBookListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = 'user_books.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user).filter(status__exact='p').order_by('due_back')
 
 
 class BookDetailView(generic.DetailView):

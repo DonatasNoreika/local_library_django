@@ -29,7 +29,7 @@
       {% if copy.status != 'a' %}
         <p><strong>Bus grąžinta:</strong> {{ copy.due_back }}</p>
       {% endif %}
-      <p class="text-muted"><strong>Id:</strong> {{ copy.uuid }}</p>
+      <p class="text-muted"><strong>Id:</strong> {{ copy.uuid }} ({{ copy.reader }})</p>
     {% endfor %}
   </div>
 {% endblock %}
