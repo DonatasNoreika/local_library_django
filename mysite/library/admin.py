@@ -4,7 +4,8 @@ from django.contrib import admin
 from .models import (Book,
                      BookInstance,
                      Genre,
-                     Author)
+                     Author,
+                     BookReview)
 
 class BooksInstanceInline(admin.TabularInline):
     model = BookInstance
@@ -31,6 +32,11 @@ class BookInstanceAdmin(admin.ModelAdmin):
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'display_books')
 
+class BookReviewAdmin(admin.ModelAdmin):
+    list_display = ('book', 'date_created', 'reviewer', 'content')
+
+
+admin.site.register(BookReview, BookReviewAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(BookInstance, BookInstanceAdmin)
 admin.site.register(Genre)

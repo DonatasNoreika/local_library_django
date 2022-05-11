@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from datetime import date
 from tinymce.models import HTMLField
 
+
 class Genre(models.Model):
     name = models.CharField('Pavadinimas', max_length=200, help_text='Įveskite knygos žanrą (pvz. detektyvas)')
 
@@ -45,7 +46,6 @@ class Book(models.Model):
     class Meta:
         verbose_name = 'Knyga'
         verbose_name_plural = 'Knygos'
-
 
 
 class BookInstance(models.Model):
@@ -104,3 +104,10 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name} {self.first_name}'
+
+
+class BookReview(models.Model):
+    book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True, blank=True, related_name='reviews')
+    reviewer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    content = models.TextField('Atsiliepimas', max_length=2000)
