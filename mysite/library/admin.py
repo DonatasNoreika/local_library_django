@@ -5,7 +5,8 @@ from .models import (Book,
                      BookInstance,
                      Genre,
                      Author,
-                     BookReview)
+                     BookReview,
+                     Profile)
 
 class BooksInstanceInline(admin.TabularInline):
     model = BookInstance
@@ -41,3 +42,4 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(BookInstance, BookInstanceAdmin)
 admin.site.register(Genre)
 admin.site.register(Author, AuthorAdmin)
+admin.site.register(Profile)

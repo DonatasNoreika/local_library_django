@@ -17,7 +17,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm
-
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     # Suskaičiuokime keletą pagrindinių objektų
@@ -141,3 +141,7 @@ def register(request):
             messages.error(request, 'Slaptažodžiai nesutampa!')
             return redirect('register')
     return render(request, 'registration/register.html')
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
