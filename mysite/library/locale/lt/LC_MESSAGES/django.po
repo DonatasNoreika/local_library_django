@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-16 10:15+0300\n"
+"PO-Revision-Date: 2022-05-16 10:15+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: .\models.py:26
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: .\models.py:27
+msgid "Author"
+msgstr "Autorius"
+
+#: .\models.py:28
+msgid "Summary"
+msgstr "Aprašymas"
+
+#: .\models.py:29
+msgid "Description"
+msgstr "Aprašymas"
+
+#: .\models.py:32
+msgid "Genre"
+msgstr "Žanras"
+
+#: .\models.py:33
+msgid "Cover"
+msgstr "Viršelis"
+
+#: .\templates\index.html:4
+msgid "Welcome"
+msgstr "Sveiki atvykę"
+
+#: .\templates\index.html:7
+msgid "Local library"
+msgstr "Rajono biblioteka"
+
+#: .\templates\index.html:8
+msgid "Welcome to my Library"
+msgstr "Sveiki atvykę į knygų rojų"
+
+#: .\templates\index.html:9
+msgid "Today we have:"
+msgstr "Šiuo metu turime:"
+
+#: .\templates\index.html:11
+msgid "Books"
+msgstr "Knygų:"
+
+#: .\templates\index.html:12
+msgid "Book Instances"
+msgstr "Egzempliorių:"
+
+#: .\templates\index.html:13
+msgid "Now Available"
+msgstr "Laisvų egzempliorių:"
+
+#: .\templates\index.html:14
+msgid "Authors"
+msgstr "Autorių:"
+
+#: .\templates\index.html:17
+#, python-format
+msgid "Your visits: %(num_visits)s "
+msgstr "Čia jūs lankotės %(num_visits)s-ą kartą."
+
+#: .\views.py:130
+#, python-format
+msgid "Username %s already exists!"
+msgstr "Vardas %s užimtas!"
+
+#: .\views.py:135
+#, python-format
+msgid "Email %s already exists!"
+msgstr "El. pašto adresas %s užimtas!"
+
+#: .\views.py:142
+msgid "Passwords do not match!"
+msgstr "Slaptažodžiai nesutampa!"
+
+#~ msgid "Your visits:"
+#~ msgstr "Čia jūs lankotes:"

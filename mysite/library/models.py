@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from datetime import date
 from tinymce.models import HTMLField
 from PIL import Image
+from django.utils.translation import gettext_lazy as _
 
 class Genre(models.Model):
     name = models.CharField('Pavadinimas', max_length=200, help_text='Įveskite knygos žanrą (pvz. detektyvas)')
@@ -22,14 +23,14 @@ class Genre(models.Model):
 
 class Book(models.Model):
     """Modelis reprezentuoja knygą (bet ne specifinę knygos kopiją)"""
-    title = models.CharField('Pavadinimas', max_length=200)
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, related_name='books')
-    summary = models.TextField('Aprašymas', max_length=1000, help_text='Trumpas knygos aprašymas')
-    description = HTMLField('Aprašymas', null=True)
+    title = models.CharField(_('Title'), max_length=200)
+    author = models.ForeignKey('Author', verbose_name=_("Author"), on_delete=models.SET_NULL, null=True, related_name='books')
+    summary = models.TextField(_('Summary'), max_length=1000, help_text='Trumpas knygos aprašymas')
+    description = HTMLField(_('Description'), null=True)
     isbn = models.CharField('ISBN', max_length=13,
                             help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
-    genre = models.ManyToManyField(Genre, help_text='Išrinkite žanrą(us) šiai knygai')
-    cover = models.ImageField('Viršelis', upload_to='covers', null=True)
+    genre = models.ManyToManyField(Genre, verbose_name=_("Genre"), help_text='Išrinkite žanrą(us) šiai knygai')
+    cover = models.ImageField(_('Cover'), upload_to='covers', null=True)
 
     def display_genre(self):
         return ', '.join(genre.name for genre in self.genre.all())
