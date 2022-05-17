@@ -165,10 +165,21 @@ class UserBookListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return BookInstance.objects.filter(reader=self.request.user).filter(status__exact='p').order_by('due_back')
 
-
+# cRud one
 class UserBookDetailView(LoginRequiredMixin, generic.DetailView):
     model = BookInstance
     template_name = 'user_book.html'
     context_object_name = 'book'
 
+
+# Crud
+class UserBookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = BookInstance
+    fields = ['book', 'due_back', 'status']
+    success_url = "/library/user_books/"
+    template_name = 'user_book_form.html'
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        return super().form_valid(form)
 
