@@ -7,7 +7,7 @@
 
       {% for book in books %}
       <li class="{% if book.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book' book.book.pk %}">{{book.book.title}}</a> ({{ book.due_back }})
+        <a href="{% url 'user_book' book.pk %}">{{book.book.title}}</a> ({{ book.due_back }})
       </li>
       {% endfor %}
     </ul>

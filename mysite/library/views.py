@@ -70,13 +70,6 @@ class BookListView(generic.ListView):
     paginate_by = 2
 
 
-class UserBookListView(LoginRequiredMixin, generic.ListView):
-    model = BookInstance
-    template_name = 'user_books.html'
-    context_object_name = 'books'
-
-    def get_queryset(self):
-        return BookInstance.objects.filter(reader=self.request.user).filter(status__exact='p').order_by('due_back')
 
 
 class BookDetailView(FormMixin, generic.DetailView):
@@ -162,3 +155,20 @@ def profile(request):
         'p_form': p_form,
     }
     return render(request, 'profile.html', context)
+
+# cRud all
+class UserBookListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = 'user_books.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user).filter(status__exact='p').order_by('due_back')
+
+
+class UserBookDetailView(LoginRequiredMixin, generic.DetailView):
+    model = BookInstance
+    template_name = 'user_book.html'
+    context_object_name = 'book'
+
+

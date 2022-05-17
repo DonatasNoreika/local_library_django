@@ -9,8 +9,9 @@ urlpatterns = [
     path('books/', views.BookListView.as_view(), name='books'),
     path('books/<int:pk>', views.BookDetailView.as_view(), name='book'),
     path('search/', views.search, name='search'),
-    path('user_books/', views.UserBookListView.as_view(), name='user_books'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('user_books/', views.UserBookListView.as_view(), name='user_books'),
+    path('user_books/<int:pk>', views.UserBookDetailView.as_view(), name='user_book'),
 ]

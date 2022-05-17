@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}User book instance{% endblock %}
+
+{% block content %}
+    <h1>Mano paimta knyga:</h1>
+    <hr>
+        <ul>
+        <img class="rounded-circle" src="{{book.reader.profilis.nuotrauka.url}}">
+        <li><strong class="{% if book.is_overdue %}text-danger{% endif %}">Pavadinimas: {{book.book.title}}</strong></li>
+        <li><strong>Gražinimo terminas:</strong> {{book.due_back}}</li>
+        <li><strong>Statusas:</strong> {{book.get_status_display}}</li>
+        <br/>
+      </li>
+    </ul>
+{% endblock %}
