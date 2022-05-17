@@ -19,6 +19,7 @@ from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 def index(request):
     # Suskaičiuokime keletą pagrindinių objektų
@@ -182,4 +183,23 @@ class UserBookCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.reader = self.request.user
         return super().form_valid(form)
+
+
+class UserBookUpdateView(LoginRequiredMixin, generic.UpdateView, UserPassesTestMixin):
+    model = BookInstance
+    fields = ['book', 'due_back', 'status']
+    success_url = "/library/user_books/"
+    template_name = 'user_book_form.html'
+
+    # def get_success_url(self):
+    #     return reverse('user_book', kwargs={'pk': self.object.id})
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        bookinstance = self.get_object()
+        return self.request.user == bookinstance.reader
+
 

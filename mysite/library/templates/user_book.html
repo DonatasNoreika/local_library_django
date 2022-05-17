@@ -10,6 +10,11 @@
         <li><strong class="{% if book.is_overdue %}text-danger{% endif %}">Pavadinimas: {{book.book.title}}</strong></li>
         <li><strong>Gražinimo terminas:</strong> {{book.due_back}}</li>
         <li><strong>Statusas:</strong> {{book.get_status_display}}</li>
+        {% if book.reader == user %}
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'user_book_update' book.id %}">Redaguoti</a>
+        </div>
+        {% endif %}
         <br/>
       </li>
     </ul>
