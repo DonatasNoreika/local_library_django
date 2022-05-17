@@ -184,7 +184,7 @@ class UserBookCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.reader = self.request.user
         return super().form_valid(form)
 
-
+# crUd
 class UserBookUpdateView(LoginRequiredMixin, generic.UpdateView, UserPassesTestMixin):
     model = BookInstance
     fields = ['book', 'due_back', 'status']
@@ -203,3 +203,13 @@ class UserBookUpdateView(LoginRequiredMixin, generic.UpdateView, UserPassesTestM
         return self.request.user == bookinstance.reader
 
 
+# cruD
+class UserBookDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BookInstance
+    success_url = "/library/user_books/"
+    template_name = 'user_book_delete.html'
+    context_object_name = 'book'
+
+    def test_func(self):
+        bookinstance = self.get_object()
+        return self.request.user == bookinstance.reader
